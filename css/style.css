@@ -1,0 +1,18 @@
+html {
+	font-family: sans-serif;
+}
+
+header {
+	padding: 1rem;
+	background-color: #000080;
+}
+
+h1 {
+	margin: 1rem;
+	color: white;
+}
+
+p {
+	height: 18px;
+	margin: 2px;
+}
