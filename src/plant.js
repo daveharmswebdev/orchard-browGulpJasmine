@@ -11,7 +11,7 @@ Plant.prototype.decreaseHeight = function(cm) {
 	this.height -= cm;
 };
 Plant.prototype.getHeight = function() {
-	return `${this.height} cm`;
+	return this.height;
 };
 
 module.exports = Plant;
