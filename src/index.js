@@ -2,6 +2,7 @@
 
 var Tree = require('../src/tree');
 var $ = require('jQuery');
+var heightBranch = require('../views/heightBranch.jade');
 
 $(function() {
 	var pearTree = new Tree(4);
@@ -10,10 +11,16 @@ $(function() {
 	var counter = 0;
 
 	function showAndGrow() {
-		console.log(`Pear tree is now ${pearTree.getHeight()}cm tall, and has ${pearTree.getBranches()} branches`);
-		console.log(`Oak tree is now ${oakTree.getHeight()}cm tall, and has ${oakTree.getBranches()} branches`);
+		$('.display').prepend(heightBranch({tree: 'Oak', height: oakTree.getHeight(), branches: oakTree.getBranches()}));
+		$('.display').prepend(heightBranch({tree: 'Pear', height: pearTree.getHeight(), branches: pearTree.getBranches()}));
+		$('.display').prepend('<p></p>');
 		pearTree.grow(6);
 		oakTree.grow(8);
+		if (counter%10 === 0) {
+			pearTree.trim(25);
+			oakTree.trim(50);
+			$('.display').prepend('<h2>***TRIM***</h2>');
+		}
 	}
 
 	function printX(x) {
@@ -24,10 +31,9 @@ $(function() {
 		if (counter++ >= maxLoops) return;
 
 		setTimeout(function() {
-			console.log(counter%10);
 			showAndGrow();
 			next();
-		}, 100);
+		}, 1000);
 	})();
 
 });
